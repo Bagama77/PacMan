@@ -1,12 +1,11 @@
 package com.pacman.demopacman.controller;
 
 import com.pacman.demopacman.model.*;
-import javafx.util.Pair;
+import com.pacman.demopacman.utilities.CustomPair;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
-import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -34,7 +33,7 @@ public class GameObjectCreator {
         try {
             gameObject.setPosX(posX);
             gameObject.setPosY(posY);
-            GameMap.gameMap.put(new Pair<>(posX, posY), gameObject);
+            GameMap.gameMap.put(new CustomPair(posX, posY), gameObject);
 
             byte[] pictureBytes = new byte[1600];
 

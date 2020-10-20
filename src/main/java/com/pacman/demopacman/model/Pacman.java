@@ -6,7 +6,6 @@ import com.pacman.demopacman.gameObjectInterfaces.Managable;
 import com.pacman.demopacman.gameObjectInterfaces.Moveable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +14,11 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("singleton")
 public class Pacman extends GameObject implements Moveable, Eating, Managable {
-    @Autowired
+
     DirectionWrapper directionWrapper;
+
+    @Override
+    public DirectionWrapper getDirectionWrapper() {
+        return null;
+    }
 }

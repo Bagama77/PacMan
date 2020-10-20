@@ -3,10 +3,11 @@ package com.pacman.demopacman.controller;
 import com.pacman.demopacman.gameObjectInterfaces.Moveable;
 import com.pacman.demopacman.model.GameMap;
 import com.pacman.demopacman.model.GameObject;
-import javafx.util.Pair;
+import com.pacman.demopacman.utilities.CustomPair;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import java.util.Map;
 
 @Data
@@ -31,7 +32,7 @@ public class StepController {
                     directionController.chooseRandomDirectionFromAllowable(movingObject);
                     doStepInNewDirection(movingObject);
                 }
-                GameMap.gameMap.put(new Pair(((GameObject) movingObject).getPosX(), ((GameObject) movingObject).getPosY()), (GameObject) movingObject);
+                GameMap.gameMap.put(new CustomPair(((GameObject) movingObject).getPosX(), ((GameObject) movingObject).getPosY()), (GameObject) movingObject);
             }
         }
         return true;
