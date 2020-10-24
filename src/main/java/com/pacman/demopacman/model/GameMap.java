@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 @Data
 @Component
@@ -13,4 +14,12 @@ import java.util.concurrent.ConcurrentHashMap;
 public class GameMap {
     public static ConcurrentHashMap<CustomPair, GameObject> gameMap = new ConcurrentHashMap<>();
 
+    @Override
+    public String toString() {
+        String s = GameMap.gameMap.entrySet()
+                .stream()
+                .map(entry -> "" + entry.getKey() + " = " + entry.getValue())
+                .collect(Collectors.joining(", "));
+        return s;
+    }
 }

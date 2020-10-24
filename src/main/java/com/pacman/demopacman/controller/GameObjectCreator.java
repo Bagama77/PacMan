@@ -21,10 +21,22 @@ public class GameObjectCreator {
 
     public static GameObject gameObjectFactory(GameObjectType gameObjectType){
         switch (gameObjectType){
-            case MONSTER: return new Monster(new DirectionWrapper());
-            case PACMAN: return new Pacman(new DirectionWrapper());
-            case BRICK: return new Brick();
-            case POINT: return new Point();
+            case MONSTER:
+                Monster monster = new Monster(new DirectionWrapper());
+                monster.setGameObjectType(GameObjectType.MONSTER);
+                return monster;
+            case PACMAN:
+                Pacman pacman = new Pacman(new DirectionWrapper());
+                pacman.setGameObjectType(GameObjectType.PACMAN);
+                return pacman;
+            case BRICK:
+                Brick brick = new Brick();
+                brick.setGameObjectType(GameObjectType.BRICK);
+                return brick;
+            case POINT:
+                Point point = new Point();
+                point.setGameObjectType(GameObjectType.POINT);
+                return point;
             default: return null;
         }
     }
@@ -38,15 +50,22 @@ public class GameObjectCreator {
             byte[] pictureBytes = new byte[1600];
 
             switch (gameObject.getGameObjectType()){
-                case BRICK: pictureBytes = Files.readAllBytes(Paths.get("static/brick3_40x40.png"));
-                case PACMAN: pictureBytes = Files.readAllBytes(Paths.get("static/pacman.png"));
-                case MONSTER: pictureBytes = Files.readAllBytes(Paths.get("static/monster.png"));
-                case POINT: pictureBytes = Files.readAllBytes(Paths.get("static/point.png"));
+                case BRICK:
+                    pictureBytes = Files.readAllBytes(Paths.get("src/main/resources/static/brick3_40x40.png"));
+                    break;
+                case PACMAN:
+                    pictureBytes = Files.readAllBytes(Paths.get("src/main/resources/static/pacman.png"));
+                    break;
+                case MONSTER:
+                    pictureBytes = Files.readAllBytes(Paths.get("src/main/resources/static/monster.png"));
+                    break;
+                case POINT:
+                    pictureBytes = Files.readAllBytes(Paths.get("src/main/resources/static/point.png"));
+                    break;
             }
             List<byte[]> pictureList = new ArrayList<>();
             pictureList.add(pictureBytes);
             gameObject.setPicture(pictureList);
-
             return true;
         } catch (Exception e){
             e.printStackTrace();

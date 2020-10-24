@@ -4,12 +4,10 @@ import com.pacman.demopacman.gameObjectInterfaces.Moveable;
 import com.pacman.demopacman.model.Brick;
 import com.pacman.demopacman.model.GameMap;
 import com.pacman.demopacman.model.GameObject;
-import javafx.util.Pair;
+import com.pacman.demopacman.utilities.CustomPair;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Set;
 
@@ -23,13 +21,13 @@ public class DirectionController {
 
         Direction.directions.forEach(direction -> moveable.getDirectionWrapper().allowableDirections.add(direction));
 
-        if(GameMap.gameMap.get(new Pair(positionX + 1, positionY)) != null && GameMap.gameMap.get(new Pair(positionX + 1, positionY)).getClass() == Brick.class)
+        if(GameMap.gameMap.get(new CustomPair(positionX + 1, positionY)) != null && GameMap.gameMap.get(new CustomPair(positionX + 1, positionY)).getClass() == Brick.class)
             moveable.getDirectionWrapper().allowableDirections.remove("RIGHT");
-        if(GameMap.gameMap.get(new Pair(positionX - 1, positionY)) != null && GameMap.gameMap.get(new Pair(positionX + 1, positionY)).getClass() == Brick.class)
+        if(GameMap.gameMap.get(new CustomPair(positionX - 1, positionY)) != null && GameMap.gameMap.get(new CustomPair(positionX + 1, positionY)).getClass() == Brick.class)
             moveable.getDirectionWrapper().allowableDirections.remove("LEFT");
-        if(GameMap.gameMap.get(new Pair(positionX, positionY + 1)) != null && GameMap.gameMap.get(new Pair(positionX + 1, positionY)).getClass() == Brick.class)
+        if(GameMap.gameMap.get(new CustomPair(positionX, positionY + 1)) != null && GameMap.gameMap.get(new CustomPair(positionX + 1, positionY)).getClass() == Brick.class)
             moveable.getDirectionWrapper().allowableDirections.remove("UP");
-        if(GameMap.gameMap.get(new Pair(positionX, positionY - 1)) != null && GameMap.gameMap.get(new Pair(positionX + 1, positionY)).getClass() == Brick.class)
+        if(GameMap.gameMap.get(new CustomPair(positionX, positionY - 1)) != null && GameMap.gameMap.get(new CustomPair(positionX + 1, positionY)).getClass() == Brick.class)
             moveable.getDirectionWrapper().allowableDirections.remove("DOWN");
         return moveable.getDirectionWrapper().allowableDirections;
     }
