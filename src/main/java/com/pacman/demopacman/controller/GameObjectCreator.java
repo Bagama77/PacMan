@@ -22,11 +22,11 @@ public class GameObjectCreator {
     public static GameObject gameObjectFactory(GameObjectType gameObjectType){
         switch (gameObjectType){
             case MONSTER:
-                Monster monster = new Monster(new DirectionWrapper());
+                Monster monster = new Monster();
                 monster.setGameObjectType(GameObjectType.MONSTER);
                 return monster;
             case PACMAN:
-                Pacman pacman = new Pacman(new DirectionWrapper());
+                Pacman pacman = new Pacman();
                 pacman.setGameObjectType(GameObjectType.PACMAN);
                 return pacman;
             case BRICK:

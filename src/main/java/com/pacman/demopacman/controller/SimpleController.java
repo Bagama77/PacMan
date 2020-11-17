@@ -1,12 +1,13 @@
 package com.pacman.demopacman.controller;
 
+import com.pacman.demopacman.model.GameMap;
+import com.pacman.demopacman.model.GameObjectType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Logger;
 
@@ -27,14 +28,22 @@ public class SimpleController {
     }
 
     @GetMapping("/start")
-    public String start(Model model) throws FileNotFoundException, IOException {
+    public String start(Model model) throws IOException {
         //fill up the map
         starter.fillGameMap();
-        //make step
-//        while (!GameOverFlag.isGameOver) {
-//            starter.stepController.doStep();
-//        }
-//        logger.info("Game Over");
+        //make steps
+        int counter = 0;
+        while (counter < 3) {
+
+            //to log the position of moving objects
+            GameMap.gameMap.entrySet().forEach(entry -> {
+                if ((entry.getValue().getGameObjectType() == GameObjectType.MONSTER) || (entry.getValue().getGameObjectType() == GameObjectType.PACMAN)) {
+                    logger.info("object: " + entry.getValue() + "; position = " + entry.getKey());
+                }
+            });
+            counter++;
+        }
+        logger.info("Game Over");
         return "home";
     }
 }

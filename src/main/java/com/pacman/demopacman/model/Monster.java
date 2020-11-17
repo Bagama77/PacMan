@@ -1,23 +1,27 @@
 package com.pacman.demopacman.model;
 
-import com.pacman.demopacman.controller.DirectionWrapper;
+import com.pacman.demopacman.controller.MoveableDirection;
 import com.pacman.demopacman.gameObjectInterfaces.Eating;
 import com.pacman.demopacman.gameObjectInterfaces.Moveable;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
 @Component
 @Scope("prototype")
 public class Monster extends GameObject implements Moveable, Eating {
 
-    DirectionWrapper directionWrapper;
+    MoveableDirection activeDirection;
+    List<MoveableDirection> allowableDirections = new ArrayList<>();
 
-    @Override
-    public DirectionWrapper getDirectionWrapper() {
-        return null;
+    public Monster(){
+        this.activeDirection = MoveableDirection.UP;
+        this.allowableDirections.add(MoveableDirection.UP);
     }
+
 }

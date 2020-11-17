@@ -18,19 +18,14 @@ public class Starter {
     GameObjectCreator gameObjectCreator;
 
     @Autowired
-    DirectionController directionController;
-
-    @Autowired
-    StepController stepController;
-
-    @Autowired
     FieldReader fieldReader;
 
     public void fillGameMap() throws FileNotFoundException, IOException {
 
         //fill gameMap of bricks
         fieldReader.readField();
-        logger.info("GameMap after filling: " + GameMap.gameMap);
         logger.info("Game map size: " + GameMap.gameMap.entrySet().size());
     }
+
+
 }

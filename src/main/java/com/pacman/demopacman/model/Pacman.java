@@ -1,24 +1,35 @@
 package com.pacman.demopacman.model;
 
-import com.pacman.demopacman.controller.DirectionWrapper;
+import com.pacman.demopacman.controller.MoveableDirection;
 import com.pacman.demopacman.gameObjectInterfaces.Eating;
 import com.pacman.demopacman.gameObjectInterfaces.Managable;
 import com.pacman.demopacman.gameObjectInterfaces.Moveable;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
 @Component
 @Scope("singleton")
 public class Pacman extends GameObject implements Moveable, Eating, Managable {
 
-    DirectionWrapper directionWrapper;
+    MoveableDirection activeDirection;
+    Set<MoveableDirection> allowableDirections = new HashSet<>();
 
-    @Override
-    public DirectionWrapper getDirectionWrapper() {
-        return null;
+    public Pacman(){
+        this.activeDirection = MoveableDirection.RIGHT;
+        this.allowableDirections.add(MoveableDirection.RIGHT);
+        this.allowableDirections.add(MoveableDirection.LEFT);
     }
+
+//    public Pacman(DirectionWrapper directionWrapper){
+//        this.directionWrapper = new DirectionWrapper();
+//        List<String> allowableDirections = new ArrayList<String>(this.directionWrapper.getAllowableDirections());
+//        Collections.shuffle(allowableDirections);
+//        this.directionWrapper.setActiveDirection(allowableDirections.get(0));
+//    }
 }
