@@ -5,6 +5,9 @@ import com.pacman.demopacman.model.Brick;
 import com.pacman.demopacman.model.GameObjectType;
 import com.pacman.demopacman.model.Monster;
 import com.pacman.demopacman.model.Pacman;
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -16,13 +19,18 @@ import java.util.logging.Logger;
 import java.util.stream.IntStream;
 
 @Component
+@Data
+@PropertySource(value = "classpath:application.properties")
 public class FieldReader {
 
     Logger logger = Logger.getLogger("FieldReader");
-    private final String fieldPath = "src/main/resources/static/field_1.txt";
+
+    @Value("${fieldpath}")
+    private String fieldPath;
 
     public void readField() {
         try {
+            logger.info("fieldpath = " + fieldPath);
             BufferedReader reader = new LineNumberReader(new FileReader(new File(fieldPath)));
             String line;
             AtomicInteger lineNumber = new AtomicInteger(0);

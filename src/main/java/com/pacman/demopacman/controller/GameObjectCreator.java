@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 @Data
@@ -24,18 +25,22 @@ public class GameObjectCreator {
             case MONSTER:
                 Monster monster = new Monster();
                 monster.setGameObjectType(GameObjectType.MONSTER);
+                monster.setId(UUID.randomUUID().toString());
                 return monster;
             case PACMAN:
                 Pacman pacman = new Pacman();
                 pacman.setGameObjectType(GameObjectType.PACMAN);
+                pacman.setId(UUID.randomUUID().toString());
                 return pacman;
             case BRICK:
                 Brick brick = new Brick();
                 brick.setGameObjectType(GameObjectType.BRICK);
+                brick.setId(UUID.randomUUID().toString());
                 return brick;
             case POINT:
                 Point point = new Point();
                 point.setGameObjectType(GameObjectType.POINT);
+                point.setId(UUID.randomUUID().toString());
                 return point;
             default: return null;
         }

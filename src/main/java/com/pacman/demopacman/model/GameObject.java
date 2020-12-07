@@ -1,22 +1,38 @@
 package com.pacman.demopacman.model;
 
-import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-//@Data
 @Component
 public class GameObject {
     GameObjectType gameObjectType;
-    int posX;
-    int posY;
+    private String id;
+    private int posX;
+    private int posY;
     List<byte[]> picture;
     boolean isShowing = true;
+    private int step;//counter of steps which were done by object
 
-    public void setPosX(int posX) {
+    public String getId() {
+        return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getStep() {
+        return step;
+    }
+
+    public void setStep(int step) {
+        this.step = step;
+    }
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
 
     public GameObjectType getGameObjectType() {
         return gameObjectType;
